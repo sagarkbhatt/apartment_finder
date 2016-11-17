@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta name="author" content="SagarBhatt" >    
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Apartment Finder</title>
+	
+		    <!-- Bootstrap core CSS -->
+    <link href="app/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="app/app.css">
+    <link rel="stylesheet" href="app/css/style.css">  
+
+      
+    <link rel="stylesheet" href="app/bower_components/ngToast/ngToast.min.css">
+   <link rel="stylesheet" type="text/css" href="app/bower_components/ngTag/ng-tags-input.css">
+    
+    </head>
+
+  <body ng-app="apartmentFinder">
+
+    <nav class="navbar navbar-inverse ">
+      <div class="container ">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" >Apartment Finder</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse" ng-controller="logout">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#views">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <!--<li><a href="#tour">Take a tour</a></li>-->
+          </ul>
+            
+            <ul class="nav navbar-nav navbar-right">
+                    <li ng-show="!info"><a href="#/registration"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li ng-show="!info"><a href="#/login"><span class="glyphicon glyphicon-log-in" ></span> Login</a></li>
+                    <li ng-show="info"><a href="#/login/" ng-click ="logout()" ><span class="glyphicon glyphicon-log-in" ></span> Log out</a></li>
+                    <li ng-show="info"><a href="#/admin"  ><span class="glyphicon glyphicon-user" ></span> User panel</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container content">
+
+      <div ng-view>
+        
+      </div>
+
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+  
+    <!-- Placed at the end of the document so the pages load faster -->
+  
+
+    <script src="app/bower_components/jquery/jquery-1.11.3.min.js"></script>
+    <script src="app/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	
+   
+      <script src="app/bower_components/angular/angular.js"></script>
+      <script src="app/bower_components/angular-route/angular-route.js"></script>
+
+      <script src="app/bower_components/ngStorage.min.js"></script>      
+
+
+      <script src="app/app.js"></script>
+       
+      <script src="app/bower_components/ngTag/ng-tags-input.js"></script> 
+     
+     <script src="app/controller/login.js"></script>   
+     
+     <script src="app/controller/logout.js"></script>
+  
+
+
+	<script src="app/controller/userPanel.js"></script>
+	<script src="app/controller/home.js"></script>   
+       
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyBYOjO9aLCz4KgUsDVPInVmK8PxyLNBq7M&sensor=false&libraries=places"></script>
+</body>
+</html>

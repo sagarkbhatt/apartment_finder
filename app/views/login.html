@@ -1,0 +1,16 @@
+<form class="form-signin" data-ng-submit="userLogin()" style="min-width:180px;padding:10px;background-color:white;width: 40% ;margin-left: auto;margin-right: auto;margin-bottom:20px;">
+    <div id="messages" class="well" data-ng-show="message">{{ message }}</div>
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="text" id="inputEmail" class="form-control" data-ng-model="login.username" placeholder="Enter username" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" data-ng-model="login.pwd" placeholder="Password" required>
+
+
+    <input type="submit" class="btn btn-primary form-control" value="Sign in" />
+
+
+
+</form>
+<span data-ng-show="errorCon">{{ errorCon }}</span>
+<span data-ng-show="errorException">{{ errorException }}</span>

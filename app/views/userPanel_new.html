@@ -1,0 +1,222 @@
+<script>
+    $("[rel='tooltip']").tooltip();    
+ 
+    $('.thumbnail').hover(
+        function(){
+            $(this).find('.caption').slideDown(250); //.fadeIn(250)
+        },
+        function(){
+            $(this).find('.caption').slideUp(250); //.fadeOut(205)
+        }
+    ); 
+</script>
+
+  <script src="app/bower_components/location/locationpicker.jquery.min.js"></script> 
+<div class="container" style="min-width:200px;padding:10px;background-color:white;width: 90% ;margin-left: auto;margin-right: auto;margin-top:5%;margin-bottom: 5%;">
+    
+    <div class="jumbotron">
+        <h1> Welcome {{LoggedUser}}</h1>
+        <p>Post your ad</p>
+    </div>
+
+
+    <div class="row">
+
+    <!-- TH1 -->
+        <div class="col-sm-6 clipart">
+            <div class="thumbnail">
+              <a href="" class=""  data-toggle="modal" data-target="#addNew">
+                <div class="caption">
+                     <h4 class="">Add Apartment</h4>
+                     
+                    <p class="">Add aprtment information</p>
+                </div>
+                <img src="./app/res/addApt.png" alt="..." class="">
+               </a>
+            </div>
+        </div>
+        
+        <div class="col-sm-6">
+            <div class="thumbnail">
+              <a  class="" href="">
+                <div class="caption">
+                     <h4 class="">My history</h4>
+
+                    <p class="">You can check the apartment that you have previously added</p>
+                </div>
+                <img src="./app/res/history.png" alt="..." class="">
+               </a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="thumbnail">
+              <a href="" class="" data-ng-click="notification();" data-toggle="modal" data-target="#notify">
+                <div class="caption">
+                     <h4 class="">Notification</h4>
+
+                    <p class="">You will get notification here, if anyone has shown interest in your apartment</p>
+                </div>
+                <img src="./app/res/notification.png" alt="..." class="">
+               </a>
+            </div>
+        </div>
+        
+        <div class="col-sm-6">
+            <div class="thumbnail">
+              <a  class="" href="" data-ng-click="showVerify();" data-toggle="modal" data-target="#verify">
+                <div class="caption">
+                     <h4 class="">Verify identity</h4>
+
+                    <p class="">Verify your identity</p>
+                </div>
+                <img src="./app/res/edit.png" alt="..." class="">
+               </a>
+            </div>
+        </div>
+        
+</div>
+<div id="verify"  class="modal fade modal-wide  " role="dialog" style="width:80%;">
+    
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Verify identity</h4>
+                 </div>
+                <div class="modal-body">
+               
+                    
+
+                   
+
+                   <div class="row jumbotron" ng-repeat="x in verify">
+                       <div class="col-sm-2">
+                           {{ x.user }}
+                       </div>
+                       <div class="col-sm-3">
+                            {{ x.add }}
+                       </div>
+                       <div class="col-sm-2" >
+                          <label ng-show="x.verify == 'true'">  Verified</label>
+                          <label ng-show="x.verify == 'false'"> Not Verified</label>
+                       </div> 
+                       
+                       <div class="col-sm-3">
+                           <input type="file" ng-model="doc" placeholder="Upload document" ng-show="x.verify == 'false'" />
+                           <label ng-show="x.verify == 'true' "> Link to your document </label>
+
+                       </div>
+                       
+
+                       <div class="col-sm-2" >
+                        <button ng-show="x.verify == 'false'" class="btn btn-danger">Verify!</button>
+                         <button ng-show="x.verify == 'true'" class="btn btn-danger" ng-disabled="true">Verified</button>
+                       
+                       </div>
+
+               
+               </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+        </div>
+        </div>
+    </div>
+
+
+    
+    <div id="addNew" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add apartment information</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="messages" class="well" data-ng-show="message">{{ message }}</div>
+                 <div class="form-group">   
+               <label class="col-sm-12 control-label">Enter tags</label>
+               
+                <tags-input ng-model="tags" class="col-sm-12" >
+                <auto-complete source="loadTags($query)" 
+                        ></auto-complete>
+                </tags-input>
+                </div>
+               <div class="form-group">
+                <label class="col-sm-12 control-label">Address</label>
+
+                <div class="col-sm-12"><textarea class="form-control" rows="5" data-ng-model="txtaddress"> </textarea></div>
+                </div>
+               
+               
+                <div class="form-group">
+                <label class="col-sm-12 control-label">Location</label>
+
+                <div class="col-sm-12"><input type="text" class="form-control" id="us3-address" data-ng-model="address"/></div>
+                </div>
+                
+            <div class="form-group">
+                <label class="col-sm-12 control-label">Area</label>
+
+                <div class="col-sm-12"><input type="text" class="form-control" id="us3-radius" data-ng-model="radius"/></div>
+            </div>
+            
+            
+            <div class="clearfix">&nbsp;</div>
+
+            <div id="us3" style="width: 100%; height: 250px;"></div>
+            
+            <div class="clearfix">&nbsp;</div>
+
+            <div class="clearfix"></div>
+            <div class="form-group">
+               
+             <input type="text" id="txtLat"  data-ng-model="txtLat" hidden>
+            <input type="text" id="txtLon"  data-ng-model="txtLon" hidden>
+            <div class="col-sm-12"> 
+                <button type="submit" class="form-control btn btn-primary" ng-click="btnSubmit()" >Submit</button> </div>
+            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+     <script type="text/javascript">
+         
+         $('#us3').locationpicker({
+                location: {latitude: 90, longitude: 90},
+                radius: 15,
+                inputBinding: {
+                    latitudeInput: $('#us3-lat'),
+                    longitudeInput: $('#us3-lon'),
+                    radiusInput: $('#us3-radius'),
+                    locationNameInput: $('#us3-address')
+                },
+                enableAutocomplete: true,
+                onchanged: function (currentLocation, radius, isMarkerDropped) {
+                    // Uncomment line below to show alert on each Location Changed event
+                    //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+                      $("#txtLat").val(currentLocation.latitude);
+                    $("#txtLon").val(currentLocation.longitude);
+                    angular.element($('#txtLat')).triggerHandler('input');
+                    angular.element($('#txtLon')).triggerHandler('input');
+                    angular.element($('#us3-address')).triggerHandler('input');
+                   angular.element($('#us3-radius')).triggerHandler('input');
+                    
+                    
+                }
+            });</script>

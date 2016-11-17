@@ -1,0 +1,43 @@
+body {
+    background-image: url(../res/apartment.jpg);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+
+.col-md-4 {
+    margin-bottom: 20px;
+}
+
+.navbar-inverse .navbar-nav > li > a,
+.navbar-inverse .navbar-brand {
+    color: snow;
+}
+
+.navbar {
+    background-color: rgba(132, 103, 85, 0.93);
+    border-radius: 0%;
+}
+
+.navbar-inverse {
+    border-color: #151412;
+}
+
+.content {
+    padding: 20px 20px 0px 20px;
+    background-color: rgba(255, 250, 250, 0.71);
+}
+centerText{
+  position:relative;
+  top:50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+}
+
+.clipart{
+
+    height: 290px;
+    
+
+}

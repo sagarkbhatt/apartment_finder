@@ -1,0 +1,70 @@
+<div class="row jumbotron" style="min-width:180px;padding:10px;background-color:white;width: 40% ;margin-left: auto;margin-right: auto;margin-top:5%;margin-bottom: 5%;">
+    <div id="messages" class="well" data-ng-show="message">{{ message }}</div>
+    <form role="form" data-ng-submit="submitFormReg()" method="post">
+
+        <table class="table">
+            <caption>Registration</caption>
+            <tr>
+                <td>
+                    <label for="user_name">Enter username</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="Enter your username" name="user_name" data-ng-model="reg.user_name" class="form-control" value="" required/> </td>
+            </tr <tr>
+            <td>
+                <label for="name">Enter name</label>
+            </td>
+            <td>
+                <input type="text" placeholder="Enter your name" name="name" data-ng-model="reg.name" class="form-control" value="" required/> </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="ph">Enter ph</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="Enter your name" name="ph" data-ng-model="reg.ph" class="form-control" value="" required/>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="email">Enter email address</label>
+                </td>
+                <td>
+                    <input type="email" name="email" placeholder="Enter email address" data-ng-model="reg.email" class="form-control" value="" required/> </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label for="pwd">Enter password</label>
+                </td>
+                <td>
+                    <input type="password" name="pwd" placeholder="Enter your password" data-ng-model="reg.pwd" class="form-control" value="" required/> </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="cnpwd">Confirm password</label>
+                </td>
+                <td>
+                    <input type="password" name="cnpwd" placeholder="Confirm your password" data-ng-model="reg.cpwd" class="form-control" value="" required/> </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Submit" class="btn btn-primary form-control" href="#/doctorpanel" target="_blank" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <span data-ng-show="errorException">{{ errorException }}</span>
+    <span data-ng-show="errorUserName">{{ errorUserName }}</span>
+    <span data-ng-show="errorName">{{ errorName }}</span>
+    <span data-ng-show="errorPh">{{ errorPh }}</span>
+    <span data-ng-show="errorEmail">{{ errorEmail }}</span>
+    <span data-ng-show="errorPwd">{{ errorPwd }}</span>
+    <span data-ng-show="errorType">{{ errorType }}</span>
+    <span data-ng-show="errorCon">{{ errorCon }}</span>
+    <!--   <span data-ng-show="session" >{{session}} </span>  -->
+
+</div>
