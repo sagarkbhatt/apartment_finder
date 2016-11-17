@@ -90,25 +90,8 @@
     .search-query:focus + button {
         z-index: 3;   
     }
-.modal.in .modal-dialog { -moz-transform: none; }
-.modal.fade .modal-dialog { -moz-transform: none; }
 
-pac-container {
-    background-color:#FFF;
-    z-index: 20;
-    position: fixed;
-    display: inline-block;
-    float: left;
-}
-.modal{
-    z-index: 20;   
-    
-}
-.modal-backdrop{
-    z-index: 10;        
+body.modal-open div.modal-backdrop { 
+    z-index: 0; 
 }
 
-.modal.modal-wide .modal-dialog {
-  width: 90%;
-   
-}

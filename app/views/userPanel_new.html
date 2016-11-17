@@ -75,7 +75,7 @@
         </div>
         
 </div>
-<div id="verify"  class="modal fade modal-wide  " role="dialog" style="width:80%;">
+<div id="verify"  class="modal fade modal-wide  " role="dialog" >
     
         <div class="modal-dialog">
 
@@ -92,33 +92,29 @@
 
                    
 
-                   <div class="row jumbotron" ng-repeat="x in verify">
-                       <div class="col-sm-2">
-                           {{ x.user }}
-                       </div>
-                       <div class="col-sm-3">
-                            {{ x.add }}
-                       </div>
-                       <div class="col-sm-2" >
-                          <label ng-show="x.verify == 'true'">  Verified</label>
-                          <label ng-show="x.verify == 'false'"> Not Verified</label>
-                       </div> 
-                       
-                       <div class="col-sm-3">
-                           <input type="file" ng-model="doc" placeholder="Upload document" ng-show="x.verify == 'false'" />
-                           <label ng-show="x.verify == 'true' "> Link to your document </label>
+                <div class="card col-sm-6" ng-repeat="x in verify">
+                    <img class="card-img-top img-responsive"  src="app/res/NotAvailable.png" alt="No image available">
+                    <div class="card-block">
+                        <h4 class="card-title">Apartment Info</h4>
+                        <p class="card-text">Upload document for verification</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ x.user }}</li>
+                        <li class="list-group-item">{{ x.add }}</li>
+                        <li class="list-group-item"><label ng-show="x.verify == 'true'">  Verified</label>
+                            <label ng-show="x.verify == 'false'"> Not Verified</label>
+                        </li>
+                        <li class="list-group-item"><input type="file" ng-model="doc" placeholder="Upload document" ng-show="x.verify == 'false'" />
+                            <label ng-show="x.verify == 'true' "> Link to your document </label>
+                        </li>
+                    </ul>
+                    <div class="card-block">
+                        <button ng-show="x.verify == 'false'" class="btn btn-danger btn-block">Verify!</button>
+                        <button ng-show="x.verify == 'true'" class="btn btn-danger btn-block" ng-disabled="true">Verified</button>
 
-                       </div>
-                       
+                    </div>
+                </div>
 
-                       <div class="col-sm-2" >
-                        <button ng-show="x.verify == 'false'" class="btn btn-danger">Verify!</button>
-                         <button ng-show="x.verify == 'true'" class="btn btn-danger" ng-disabled="true">Verified</button>
-                       
-                       </div>
-
-               
-               </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
@@ -126,10 +122,11 @@
         </div>
         </div>
     </div>
+</div>
 
 
     
-    <div id="addNew" class="modal fade" role="dialog">
+    <div id="addNew" class="modal fade  " role="dialog" >
         <div class="modal-dialog">
 
             <!-- Modal content-->
