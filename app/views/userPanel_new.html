@@ -38,7 +38,7 @@
         
         <div class="col-sm-6">
             <div class="thumbnail">
-              <a  class="" href="">
+              <a  class="" href="" data-ng-click="getHistory();" data-toggle="modal" data-target="#update">
                 <div class="caption">
                      <h4 class="">My history</h4>
 
@@ -150,14 +150,7 @@
 
                 <div class="col-sm-12"><textarea class="form-control" rows="5" data-ng-model="txtaddress"> </textarea></div>
                 </div>
-                <div class="form-group">
-                  
-                      <label class="col-sm-12 control-label">Upload image</label>
-                   <div class="col-sm-12"> <input type="text" ng-model="viewName"  placeholder="Name the view" ></div>
-                     <div class="col-sm-12"><input type="file" file-model="myFile" /></div>
-                    <div class="col-sm-12"><button ng-click="uploadFile()" >upload me</button></div>
-               </div>
-               
+                
                 <div class="form-group">
                 <label class="col-sm-12 control-label">Location</label>
 
@@ -194,7 +187,55 @@
         </div>
     </div>
 
+    <div id="update"  class="modal fade modal-wide  " role="dialog" >
+    
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">History & Update</h4>
+                 </div>
+                <div class="modal-body">
+               
+               <div class="row" ng-show="imageId">
+                  
+                <label class="col-sm-12 control-label">Upload image for AptId: {{ imageId }}</label>
+               
+                   <div class="col-sm-4"> <input type="text"  class=" input-search" ng-model="viewName"  placeholder="Name the view" ></div>
+                     <div class="col-sm-4">
+                     <label class="btn btn-default btn-file btn-block">
+                        Browse <input type="file" file-model="myFile" style="display: none;">
+                    </label>
+                     </div>
+                    <div class="col-sm-4"><button class="btn btn-info btn-block" ng-click="uploadFile()"  >upload me</button></div>
+               </div>
+                   
+
+                <table class="table">
+                    <tr ng-repeat="x in history">
+                        <td> {{ x.id }} </td>
+                        <td> {{ x.user }} </td>
+                        <td>{{ x.add }} </td>
+                        <td> <button class="btn btn-danger" ng-click="">Delete </button></td>
+                        <td> <button class="btn btn-primary" ng-click="addImage(x)">Add images</button></td>
+                    </tr>
+                    
+                </table>    
+
+                   
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+                </div>
+                </div>
+            </div>
+        </div>
 
 
 

@@ -156,22 +156,61 @@
         console.dir(file);
 
         var uploadUrl = "api/save_form.php";
-        var text = $scope.name;
-        
-        fileUpload.uploadFileToUrl(file, uploadUrl, text,sessionUser);
+        var text = $scope.viewName;
+        //flat id 
+        var id = $scope.imageId;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,id);
    };
 
+
+   $scope.getHistory= function(){
+
+        
+        var aptInfo= {};
+        var aptArr = [];
+       var path = 'api/fetchApt.php?user='+sessionUser;
+       $http.get(path).then(function(data) {
+
+                console.log(data);
+                data= data.data;
+                if(data.success){
+
+                    var i=0;
+                    
+                    for(i=0;i<data.user.length;i++){
+                    aptInfo.id=data.id[i];    
+                    aptInfo.user=data.user[i];
+                    aptInfo.lon=data.lon[i];
+                    aptInfo.lat=data.lat[i];
+                    aptInfo.tag=data.tag[i];
+                    aptInfo.add=data.add[i];
+                    aptInfo.rad=data.rad[i];
+                    aptArr.push(aptInfo);
+                    aptInfo={};
+                    }
+                    $scope.history = aptArr;
+
+                }
+
+            })
+
+   }
+   $scope.addImage = function(x){
+
+       $scope.imageId =x.id;
+   }
         
     }
     userPanel.$inject = ['$scope', '$http', '$rootScope','$localStorage','$q','$filter','fileUpload'];
     angular.module('apartmentFinder').controller('userPanel', userPanel);
     
     angular.module('apartmentFinder').service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl, name,username){
+    this.uploadFileToUrl = function(file, uploadUrl, name,id){
          var fd = new FormData();
          fd.append('file', file);
          fd.append('name', name);
-         fd.append('username',username);
+         fd.append('id',id);
+         
          $http.post(uploadUrl, fd, {
              transformRequest: angular.identity,
              headers: {'Content-Type': undefined,'Process-Data': false}

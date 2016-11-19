@@ -4,10 +4,14 @@ $data = array();
 // Getting posted data and decodeing json
 $postdata = file_get_contents('php://input');
 $request = json_decode($postdata);
-
+if(isset($_GET['user'])){
+$name= $_GET['user'];
+$qry="select * from flatinfo where username = '$name'";
+}else{
 $qry="select * from flatinfo";
+}
 require_once 'connection.php';
-
+$id=[];
 $userid= [];
 $add=[];
 $lat=[];
@@ -35,7 +39,7 @@ if($mysqli->connect_error > 0){
 
             if($row){
             //$data[]=$row[0];
-            
+            $id=$row[0];
             $userid[]=$row[1];
             $add[]=$row[2];
             $lat[]=$row[3];
@@ -63,6 +67,7 @@ if($mysqli->connect_error > 0){
 
 
 if (empty($errors)) {
+    $data['id']=$id;
      $data['user']=$userid;
      $data['lon']=$lon;
      $data['lat']=$lat;
