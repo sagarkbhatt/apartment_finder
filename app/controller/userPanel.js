@@ -1,7 +1,7 @@
 (function() {
 
 
-    var userPanel = function($scope, $http, $rootScope,$localStorage,$q,$filter) {
+    var userPanel = function($scope, $http, $rootScope,$localStorage,$q,$filter,fileUpload) {
 
         var sessionUser = null;
         $scope.googleMapsUrl="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYOjO9aLCz4KgUsDVPInVmK8PxyLNBq7M";
@@ -149,8 +149,57 @@
                  $scope.verify =identity;
              })
         }
-     }
-    userPanel.$inject = ['$scope', '$http', '$rootScope','$localStorage','$q','$filter'];
+     
+    $scope.uploadFile = function(){
+        var file = $scope.myFile;
+        console.log('file is ' + file);
+        console.dir(file);
+
+        var uploadUrl = "api/save_form.php";
+        var text = $scope.name;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text);
+   };
+
+        
+    }
+    userPanel.$inject = ['$scope', '$http', '$rootScope','$localStorage','$q','$filter','fileUpload'];
     angular.module('apartmentFinder').controller('userPanel', userPanel);
+    
+    angular.module('apartmentFinder').service('fileUpload', ['$http', function ($http) {
+    this.uploadFileToUrl = function(file, uploadUrl, name){
+         var fd = new FormData();
+         fd.append('file', file);
+         fd.append('name', name);
+         $http.post(uploadUrl, fd, {
+             transformRequest: angular.identity,
+             headers: {'Content-Type': undefined,'Process-Data': false}
+         })
+         .success(function(data){
+            console.log(data); 
+            console.log("Success");
+         })
+         .error(function(){
+            console.log("Success");
+         });
+     }
+ }]);
+
+
+ angular.module('apartmentFinder').directive('fileModel', ['$parse', function ($parse) {
+    return {
+    restrict: 'A',
+    link: function(scope, element, attrs) {
+        var model = $parse(attrs.fileModel);
+        var modelSetter = model.assign;
+
+        element.bind('change', function(){
+            scope.$apply(function(){
+                modelSetter(scope, element[0].files[0]);
+            });
+        });
+    }
+   };
+}]);
+
 
 }())
