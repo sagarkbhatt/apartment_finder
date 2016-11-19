@@ -25,7 +25,7 @@
     <!-- TH1 -->
         <div class="col-sm-6 clipart">
             <div class="thumbnail">
-              <a href="" class=""  data-toggle="modal" data-target="#addNew">
+              <a href="" class=""  data-toggle="modal" data-target="#addNew" id="addApt">
                 <div class="caption">
                      <h4 class="">Add Apartment</h4>
                      
@@ -199,8 +199,10 @@
 
 
      <script type="text/javascript">
-         
-         $('#us3').locationpicker({
+         $('#addApt').click(function(){
+
+
+             $('#us3').locationpicker({
                 location: {latitude: 90, longitude: 90},
                 radius: 15,
                 inputBinding: {
@@ -222,4 +224,7 @@
                     
                     
                 }
-            });</script>
+            });
+
+         });
+         </script>

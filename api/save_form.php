@@ -2,6 +2,7 @@
 
      $target_dir = "../upload/";
      $name = $_POST['name'];
+     $user =$_POST['username'];
      print_r($_FILES);
      $target_file = $target_dir . basename($_FILES["file"]["name"]);
 

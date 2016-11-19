@@ -157,7 +157,8 @@
 
         var uploadUrl = "api/save_form.php";
         var text = $scope.name;
-        fileUpload.uploadFileToUrl(file, uploadUrl, text);
+        
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,sessionUser);
    };
 
         
@@ -166,10 +167,11 @@
     angular.module('apartmentFinder').controller('userPanel', userPanel);
     
     angular.module('apartmentFinder').service('fileUpload', ['$http', function ($http) {
-    this.uploadFileToUrl = function(file, uploadUrl, name){
+    this.uploadFileToUrl = function(file, uploadUrl, name,username){
          var fd = new FormData();
          fd.append('file', file);
          fd.append('name', name);
+         fd.append('username',username);
          $http.post(uploadUrl, fd, {
              transformRequest: angular.identity,
              headers: {'Content-Type': undefined,'Process-Data': false}
