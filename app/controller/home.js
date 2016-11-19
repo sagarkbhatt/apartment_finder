@@ -28,11 +28,12 @@
                     aptInfo.tag=data.tag[i];
                     aptInfo.add=data.add[i];
                     aptInfo.rad=data.rad[i];
+                    aptInfo.img=data.img[i];
                     aptArr.push(aptInfo);
                     aptInfo={};
                     }
                     $scope.data = aptArr;
-
+                    console.log($scope.data);
                 }
 
             })

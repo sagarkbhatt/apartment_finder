@@ -5,7 +5,20 @@
     <div class="row jumbotron" data-ng-repeat="x in data" >
         <div >
             <div class="col-sm-12 image" >
-            <center><img src="app/res/NotAvailable.png" height="150px" width="150px" /></center>
+            <center>
+      <!--      <div class="w3-content" style="max-width:400px" >
+            <div class="myslides" ng-repeat="y in x.img">
+            <img  src="{{ y.path }}" height="150px" width="150px" />
+            </div>
+           </div> -->
+
+           <div class="w3-content" style="max-width:400px">
+        <a href="#" ng-repeat="y in x.img">
+        <img class="mySlides w3-animate-fading" ng-src="upload/{{y.path}}"  width="250px" height="250px">
+        </a>
+        </div>
+            
+            </center>
             </div>
             <div class="col-sm-12 data">
             <table class="table">
@@ -32,3 +45,20 @@
         </div>
     </div>
 </div>
+
+<script>
+var slideIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+      x[i].style.display = "none"; 
+    }
+    slideIndex++;
+    if (slideIndex > x.length) {slideIndex = 1} 
+    x[slideIndex-1].style.display = "block"; 
+    setTimeout(carousel, 4500); 
+}
+</script>

@@ -18,7 +18,7 @@ $lat=[];
 $lon=[];
 $tag=[];
 $rad=[];
-
+$img=[];
 
 
 $mysqli=new mysqli($localhost,$user,$password,$db);
@@ -45,7 +45,16 @@ if($mysqli->connect_error > 0){
             $lat[]=$row[3];
             $lon[]=$row[4];
             $tag[]=$row[5];
+            
             $rad=$row[6];
+
+            $qry2 = "select * from flatimage where id = $id";
+            $tempimg=[];
+            $result2 = $mysqli->query($qry2);
+             while($temp=$result2->fetch_array(MYSQLI_ASSOC)){
+             $tempimg[]=$temp;
+             }
+             $img[]=$tempimg;
             }
         }
 
@@ -74,6 +83,7 @@ if (empty($errors)) {
      $data['tag']=$tag;
      $data['rad']=$rad;
      $data['add']=$add; 
+     $data['img']=$img;
      $data['success'] = true;
     //$data['message'] = $db_pwd.' '.$u_pwd;
   
