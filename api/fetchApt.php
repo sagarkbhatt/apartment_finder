@@ -39,16 +39,16 @@ if($mysqli->connect_error > 0){
 
             if($row){
             //$data[]=$row[0];
-            $id=$row[0];
+            $id[]=$row[0];
             $userid[]=$row[1];
             $add[]=$row[2];
             $lat[]=$row[3];
             $lon[]=$row[4];
             $tag[]=$row[5];
             
-            $rad=$row[6];
-
-            $qry2 = "select * from flatimage where id = $id";
+            $rad[]=$row[6];
+            $temp = $row[0];
+            $qry2 = "select * from flatimage where id = $temp";
             $tempimg=[];
             $result2 = $mysqli->query($qry2);
              while($temp=$result2->fetch_array(MYSQLI_ASSOC)){

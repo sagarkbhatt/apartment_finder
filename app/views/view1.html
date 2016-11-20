@@ -1,6 +1,36 @@
 <div class="row">
 
-    <div class="row jumbotron" data-ng-repeat="x in data" >
+       <center>     
+        <div id="custom-search-input">
+                        <div  class="col-sm-10 input-group">
+                                        <tags-input ng-model="tags" >
+                            <auto-complete source="loadTags($query)" 
+                                    ></auto-complete>
+                            </tags-input>
+                        </div>
+                        
+                        
+                            <div class="col-sm-10 input-group">
+                                <input type="text" style="height:50px;" class="search-query form-control" placeholder="Search apartment by area" ng-model="searchText"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button" style="padding: 0px;margin: 0px;width: 0px;/*! height: 0px; */">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+         
+                                </span>
+                                
+                         </div>
+            
+        </div>   
+    </center>
+
+
+    <hr/ >
+    <div class="row jumbotron" data-ng-repeat="x in data|filterByTags:tags|filter:{add:searchText}" >
+       
+       
+       
+       
         <div >
             <div class="col-sm-3"></div>
             <div class="col-sm-6 images" >
@@ -41,7 +71,7 @@
             
             </div>
        
-        <button class="btn btn-warning btn-block" data-ng-click="">Show more</button>
+        <button class="btn btn-warning btn-block" data-ng-click="">Ask for more details</button>
 		   
         </div>
     </div>
