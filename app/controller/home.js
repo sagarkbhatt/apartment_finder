@@ -14,8 +14,7 @@
 
            // sessionUser = $localStorage.user;
              $scope.tags = [
-                { text: 'nirma' },
-                { text: 'university' },
+                { text: 'nirma' }
                
             ];
            var tagData =[];
@@ -72,6 +71,7 @@
                     aptInfo.add=data.add[i];
                     aptInfo.rad=data.rad[i];
                     aptInfo.img=data.img[i];
+                    aptInfo.verify=data.verify[i];
                     aptArr.push(aptInfo);
                     aptInfo={};
                     }

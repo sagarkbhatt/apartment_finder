@@ -8,7 +8,7 @@ if(isset($_GET['user'])){
 $name= $_GET['user'];
 $qry="select * from flatinfo where username = '$name'";
 }else{
-$qry="select * from flatinfo";
+$qry="select * from flatinfo,verify where flatinfo.id=verify.flatid";
 }
 require_once 'connection.php';
 $id=[];
@@ -19,7 +19,7 @@ $lon=[];
 $tag=[];
 $rad=[];
 $img=[];
-
+$ver=[];
 
 $mysqli=new mysqli($localhost,$user,$password,$db);
 
@@ -47,6 +47,8 @@ if($mysqli->connect_error > 0){
             $tag[]=$row[5];
             
             $rad[]=$row[6];
+            if(!isset($_GET['user']))
+            $ver[]=$row[9];
             $temp = $row[0];
             $qry2 = "select * from flatimage where id = $temp";
             $tempimg=[];
@@ -84,6 +86,8 @@ if (empty($errors)) {
      $data['rad']=$rad;
      $data['add']=$add; 
      $data['img']=$img;
+     if(!isset($_GET['user']))
+     $data['verify']=$ver;
      $data['success'] = true;
     //$data['message'] = $db_pwd.' '.$u_pwd;
   

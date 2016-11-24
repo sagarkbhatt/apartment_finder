@@ -52,7 +52,7 @@
             </div>
             <div class="col-sm-3"></div>
             <div class="col-sm-12 data">
-            <table class="table">
+            <table class="table" >
                 <tr>
                     <td><pre>{{ x.add }}</td>
                 
@@ -62,8 +62,8 @@
                 <td><i>Tags: </i> {{ x.tag }}</td>
                 
                 </tr>
-                <tr>
-                <td><i>Not Verified</td>
+                <tr ng-class="{'verify':x.verify=='true','nverify':x.verify=='false'}">
+                <td><i>Verify:{{ x.verify }}</i></td>
                 
                 </tr>
                 
