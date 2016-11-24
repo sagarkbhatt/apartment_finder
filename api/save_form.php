@@ -20,8 +20,14 @@ $data = array();
      $data['con']="Connection failed: " . $conn->connect_error;
      }
 
+     $sql='';
+    if($name == 'Document'){
+        
+      $sql = "update verify set verfied='true',doc='".basename($_FILES["file"]["name"])."' where flatid=$id" ;    
+    }else{
      $sql = "INSERT INTO flatimage (id,name,path) VALUES (".$id.",'".$name."','".basename($_FILES["file"]["name"])."')";
-
+   
+    }
      if ($conn->query($sql) === TRUE) {
          $data['db']='Data inserted'; // new file uploaded
      } else {

@@ -138,6 +138,7 @@
                     x.user =data.user[i];
                     x.add = data.add[i];
                     x.verify =data.verify[i];
+                    x.flat=data.flat[i];
                     if(!(x.verify)){
                         x.verify='';
                     }
@@ -162,6 +163,20 @@
         fileUpload.uploadFileToUrl(file, uploadUrl, text,id);
    };
 
+
+     
+    $scope.btnVerify = function(){
+        var file = $scope.DocFile;
+        console.log('file is ' + file);
+        console.dir(file);
+
+        var uploadUrl = "api/save_form.php";
+        var text = "Document";
+        //flat id 
+        var id = $scope.docId;
+        fileUpload.uploadFileToUrl(file, uploadUrl, text,id);
+   };
+   
 
    $scope.getHistory= function(){
 
@@ -198,6 +213,11 @@
    $scope.addImage = function(x){
 
        $scope.imageId =x.id;
+   }
+
+    $scope.addDoc = function(x){
+
+       $scope.docId =x.flat;
    }
         
     }
@@ -241,6 +261,9 @@
     }
    };
 }]);
+
+
+
 
 
 }())

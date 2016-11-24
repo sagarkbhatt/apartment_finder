@@ -89,11 +89,24 @@
                 <div class="modal-body">
                
                     
-
+                <div class="row" ng-show="docId">
+                  
+                <label class="col-sm-12 control-label">Upload image for AptId: {{ docId }}</label>
+               
+                   <div class="col-sm-4"> <input type="text"  class=" input-search" ng-model="viewName"  placeholder="Name the view" ></div>
+                     <div class="col-sm-4">
+                     <label class="btn btn-default btn-file btn-block">
+                        Browse <input type="file" file-model="DocFile" style="display: none;">
+                    </label>
+                     </div>
+                    <div class="col-sm-4"><button class="btn btn-info btn-block" ng-click="btnVerify()"  >upload me</button></div>
+               </div>
+                   
+    
                    
 
                 <div class="card col-sm-6" ng-repeat="x in verify">
-                    <img class="card-img-top img-responsive"  src="app/res/NotAvailable.png" alt="No image available">
+                   <!-- <img class="card-img-top img-responsive"  src="app/res/NotAvailable.png" alt="No image available">-->
                     <div class="card-block">
                         <h4 class="card-title">Apartment Info</h4>
                         <p class="card-text">Upload document for verification</p>
@@ -104,19 +117,22 @@
                         <li class="list-group-item"><label ng-show="x.verify == 'true'">  Verified</label>
                             <label ng-show="x.verify == 'false'"> Not Verified</label>
                         </li>
-                        <li class="list-group-item"><input type="file" ng-model="doc" placeholder="Upload document" ng-show="x.verify == 'false'" />
+                        <li class="list-group-item">
+                            <!--<input type="file"  file-model="DocFile" placeholder="Upload document" ng-show="x.verify == 'false'" />-->
+                           
+                             <button ng-show="x.verify == 'false'"" class="btn btn-primary" ng-click="addDoc(x)">Add images</button>                              
                             <label ng-show="x.verify == 'true' "> Link to your document </label>
                         </li>
                     </ul>
                     <div class="card-block">
-                        <button ng-show="x.verify == 'false'" class="btn btn-danger btn-block">Verify!</button>
+                        <button ng-show="x.verify == 'false'" ng-click="btnVerify(x)" class="btn btn-danger btn-block">Verify!</button>
                         <button ng-show="x.verify == 'true'" class="btn btn-danger btn-block" ng-disabled="true">Verified</button>
 
                     </div>
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
                 </div>
 
         </div>
