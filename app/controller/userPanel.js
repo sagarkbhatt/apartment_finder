@@ -163,30 +163,6 @@
         fileUpload.uploadFileToUrl(file, uploadUrl, text,id);
    };
 
-   $scope.inquiry = function(){
-
-       $http({
-
-                method: 'POST',
-                url: 'api/addApt.php',
-                data: ob,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-
-            }).success(function(data) {
-                console.log(data);
-                
-                //data = data.data;
-                if(data.success){
-
-                    $scope.message =data.message;
-                }
-        
-             })
-  
-
-     }
      
     $scope.btnVerify = function(){
         var file = $scope.DocFile;
@@ -242,6 +218,39 @@
 
        $scope.docId =x.flat;
    }
+
+   $scope.notification = function(){
+       
+       var dataArr =[];
+       var path = 'api/notification.php?user='+sessionUser;
+       $http.get(path).then(function(data) {
+           console.log(data);
+           data = data.data;
+
+           obData ={};
+
+           for(i=0;i<data.clientid.length;i++){
+
+               obData.id = data.flatid[i];
+               obData.client = data.clientid[i];
+
+               dataArr.push(obData);
+               console.log(obData);
+               obData = {};
+
+           } 
+
+           $scope.NotificationData = dataArr;
+
+           console.log($scope.NotificationData);
+       })
+
+
+
+
+   }
+
+
         
     }
     userPanel.$inject = ['$scope', '$http', '$rootScope','$localStorage','$q','$filter','fileUpload'];
@@ -261,6 +270,7 @@
          .success(function(data){
             console.log(data); 
             console.log("Success");
+            alert('Image uploaded');
          })
          .error(function(){
             console.log("Success");

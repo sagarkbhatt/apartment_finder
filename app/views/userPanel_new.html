@@ -141,6 +141,50 @@
 </div>
 
 
+
+
+<div id="notify"  class="modal fade" role="dialog">
+    
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Ad inquiries</h4>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <tr>
+                        <th>flatid</th>
+                        <th>Request By</th>
+                      
+                        <th>Share Detail</th>
+                        </tr>
+                        <tr ng-repeat="y in NotificationData" >
+                        <td>{{y.id}}</td>
+                        <td>{{y.client}}</td>
+                        
+                        <td><button class="btn btn-primary">Share contact</button></td>
+                        </tr>
+                        
+                    
+                    </table>
+                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+
+        </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
     
     <div id="addNew" class="modal fade  " role="dialog" >
         <div class="modal-dialog">

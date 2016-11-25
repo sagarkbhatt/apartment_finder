@@ -3,15 +3,16 @@ $isbn=array();
 $clientId=array();
 $errors = array();
 $data = array();
+$flatid = array();
 // Getting posted data and decodeing json
-$postdata = file_get_contents('php://input');
-$request = json_decode($postdata);
+//$postdata = file_get_contents('php://input');
+//$request = json_decode($postdata);
 
-$user=$request->username;
+$user=$_GET['user'];
 //userId is owner of book
 //$qry="insert into inquiry('clientId','userId','isbn')values ('$client','$owner','$isbn')";
 
-$qry="select clientId,isbn from inquiry where userId='$user'";
+$qry="select i.flatid,i.client,f.address from inquiry i,flatinfo f where i.flatid=f.id and f.username='$user'";
 
 require_once 'connection.php';
 $mysqli=new mysqli($localhost,$user,$password,$db);
@@ -32,9 +33,11 @@ else{
         while($row=$result->fetch_array(MYSQLI_NUM)){
 
             
+            $flatid[] = $row[0];
+            $clientId[] = $row[1];    
             //$data[]=$row[0];
-            $isbn[]=$row[1];
-            $clientId[]=$row[0];
+           // $isn[]=$row[1];
+           // $clientId[]=$row[0];
         
         }
 
@@ -51,8 +54,8 @@ else{
 
 
 if (empty($errors)) {
-    $data['isbn']=$isbn;
-    $data['user']=$clientId;
+    $data['flatid']=$flatid;
+    $data['clientid'] = $clientId;
     $data['success'] = true;
 //    $data['message'] = 'Form data is going well';
   
