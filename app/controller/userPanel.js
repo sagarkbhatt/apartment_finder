@@ -163,7 +163,30 @@
         fileUpload.uploadFileToUrl(file, uploadUrl, text,id);
    };
 
+   $scope.inquiry = function(){
 
+       $http({
+
+                method: 'POST',
+                url: 'api/addApt.php',
+                data: ob,
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+            }).success(function(data) {
+                console.log(data);
+                
+                //data = data.data;
+                if(data.success){
+
+                    $scope.message =data.message;
+                }
+        
+             })
+  
+
+     }
      
     $scope.btnVerify = function(){
         var file = $scope.DocFile;

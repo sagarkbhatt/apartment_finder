@@ -6,13 +6,14 @@
         
         var aptInfo= {};
         var aptArr = [];
-            
+        $scope.askInfo = '';    
     console.log('data');
-
+var sessionUser='';
      angular.element(document).ready(function() {
 
 
-           // sessionUser = $localStorage.user;
+           sessionUser = $localStorage.user;
+           $scope.client
              $scope.tags = [
                 { text: 'nirma' }
                
@@ -72,6 +73,7 @@
                     aptInfo.rad=data.rad[i];
                     aptInfo.img=data.img[i];
                     aptInfo.verify=data.verify[i];
+                    aptInfo.id=data.id[i];
                     aptArr.push(aptInfo);
                     aptInfo={};
                     }
@@ -83,6 +85,44 @@
 
         });
     
+        
+   $scope.inquiry = function(){
+
+       $http({
+
+                method: 'POST',
+                url: 'api/inquiry.php',
+                data: {'user':$scope.clientUsername,'flatid':$scope.askInfo},
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+
+            }).success(function(data) {
+                console.log(data);
+                
+               // data = data.data;
+                if(data.success){
+
+                    $scope.inqMessage =data.msg;
+                }
+
+                alert($scope.inqMessage + ' for Aptid:' +$scope.askInfo);
+        
+             })
+  
+
+     }
+
+        
+        $scope.askDetail = function(x){
+
+            $scope.askInfo = x.id;
+            console.log(x);
+            console.log($scope.askInfo);
+            
+            $scope.clientUsername = sessionUser;
+
+        }
     
         
 
